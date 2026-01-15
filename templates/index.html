@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏠 House Price Predictor</h1>
+            <p class="subtitle">Predict house prices using machine learning</p>
+        </header>
+
+        <div class="main-content">
+            <div class="form-container">
+                <form id="predictionForm">
+                    <div class="form-group">
+                        <label for="area">Area (sq ft)</label>
+                        <input type="number" id="area" name="area" min="100" max="10000" required>
+                        <span class="hint">Enter the total area in square feet</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bedrooms">Number of Bedrooms</label>
+                        <input type="number" id="bedrooms" name="bedrooms" min="1" max="10" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bathrooms">Number of Bathrooms</label>
+                        <input type="number" id="bathrooms" name="bathrooms" min="1" max="10" step="0.5" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="age">House Age (years)</label>
+                        <input type="number" id="age" name="age" min="0" max="100" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location_score">Location Score (1-10)</label>
+                        <input type="number" id="location_score" name="location_score" min="1" max="10" step="0.1" required>
+                        <span class="hint">Rate the location quality from 1 (poor) to 10 (excellent)</span>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label>
+                            <input type="checkbox" id="parking" name="parking" value="1">
+                            <span>Parking Available</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label>
+                            <input type="checkbox" id="furnished" name="furnished" value="1">
+                            <span>Furnished</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="predict-btn">
+                        <span>Predict Price</span>
+                    </button>
+                </form>
+            </div>
+
+            <div class="result-container" id="resultContainer" style="display: none;">
+                <div class="result-card">
+                    <h2>Predicted House Price</h2>
+                    <div class="price-display" id="priceDisplay">
+                        $0.00
+                    </div>
+                    <button class="reset-btn" onclick="resetForm()">Predict Another</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h3>About This Predictor</h3>
+            <p>This house price prediction model uses machine learning (Random Forest) to estimate property values based on various features including area, bedrooms, bathrooms, age, location, and amenities.</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
